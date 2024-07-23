@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Module } from "@nestjs/common";
-import { UsuarioController } from "./usario.controller";
+import { UsuarioController } from "./usuario.controller";
 import { UsuarioRepository } from "./usuario.repository";
 
 @Module({
