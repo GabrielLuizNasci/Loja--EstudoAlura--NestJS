@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
+import { UsuarioModule } from './usuario/usuario.module';
+
 
 @Module({
-  imports: [],
-  
+  imports: [UsuarioModule],
 })
 export class AppModule {}
