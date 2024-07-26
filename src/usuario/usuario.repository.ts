@@ -13,4 +13,12 @@ export class UsuarioRepository{
     async listar(){
         return this.usuarios;
     }
+
+    async buscarPorEmail(email: string){
+        const checkUsuario = this.usuarios.find(
+            usuario => usuario.email === email
+        );
+
+        return checkUsuario !== undefined;
+    }
 }
