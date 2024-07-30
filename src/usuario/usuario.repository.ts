@@ -16,6 +16,28 @@ export class UsuarioRepository{
     }
 
     async atualizar(id: string, dadosAtuali: Partial<UsuarioEntity>){
+        const usuario = this.buscarPorId(id)
+
+        Object.entries(dadosAtuali).forEach(([chave, valor]) => {
+            if(chave === 'id'){
+                return;
+            }
+
+            usuario[chave] = valor;
+        })
+
+        return usuario;
+    }
+
+    async deletar(id: string){
+        const usuario = this.buscarPorId(id)
+
+        this.usuarios = this.usuarios.filter(usuarioSalvo => usuarioSalvo.id !== id);
+
+        return usuario;
+    }
+
+    private buscarPorId(id: string){
         const possivelUsuario = this.usuarios.find(
             usuarioSalvo => usuarioSalvo.id === id
         );
@@ -24,13 +46,7 @@ export class UsuarioRepository{
             throw new Error('Usuario não encontrado.');
         }
 
-        Object.entries(dadosAtuali).forEach(([chave, valor]) => {
-            if(chave === 'id'){
-                return;
-            }
-
-            possivelUsuario[chave] = valor;
-        })
+        return possivelUsuario;
     }
 
     async buscarPorEmail(email: string){
